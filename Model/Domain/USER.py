@@ -19,7 +19,6 @@ class User:
         self.__email_name = email_name
         self.__address = address
         self.__phone_number = phone_number
-        self.__date_of_birth = date_of_birth
         self.__join_date = join_date
 
     def __str__(self):
@@ -30,37 +29,37 @@ class User:
         return f'{self.__user_id};{self.__first_name};{self.__last_name};{self.__email_name};{self.__address};' \
                f'{self.__phone_number};{self.__date_of_birth};{self.__join_date}\n'
 
-    def getFirstName(self):
+    def get_first_name(self):
         return self.__first_name
 
-    def setFirstName(self, firstname):
+    def set_first_name(self, firstname):
         self.__first_name = firstname
 
-    def getLastName(self):
+    def get_last_name(self):
         return self.__last_name
 
-    def setLastName(self, lastname):
+    def set_last_name(self, lastname):
         self.__last_name = lastname
 
-    def getUserID(self):
+    def get_user_id(self):
         return self.__user_id
 
-    def getEmailName(self):
+    def get_email_name(self):
         return self.__email_name
 
-    def setEmailName(self, emailname):
+    def set_email_name(self, emailname):
         self.__email_name = emailname
 
-    def getAdress(self):
+    def get_adress(self):
         return self.__address
 
-    def setAdress(self, adress):
+    def set_adress(self, adress):
         self.__address = adress
 
-    def getPhoneNumber(self):
+    def get_phone_number(self):
         return self.__phone_number
 
-    def setPhoneNumber(self, phonenumber):
+    def set_phone_number(self, phonenumber):
         self.__phone_number = phonenumber
 
     def get_birth_of_date(self):
