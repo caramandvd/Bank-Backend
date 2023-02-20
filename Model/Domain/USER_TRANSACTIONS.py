@@ -1,4 +1,4 @@
-class UsersTransactions:
+class UserTransactions:
     def __init__(self, transaction_id, user_id, currency, amount, vendor, date_time):
         self.__transaction_id = transaction_id
         self.__user_id = user_id

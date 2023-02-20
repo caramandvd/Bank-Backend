@@ -1,4 +1,4 @@
-class UsersDeposits:
+class UserDeposits:
     def __init__(self, user_id, currency, name, amount, description):
         self.__user_id = user_id
         self.__currency = currency
