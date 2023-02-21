@@ -68,24 +68,3 @@ class UserRepository(Base):
         my_session = Session()
         user = my_session.query(UserRepository).get(searched_id)
         print(user)
-
-    # def update_user(self, new_user_id, new_first_name, new_last_name, new_email_name, new_address, new_phone_number, new_date_of_birth, new_join_date):
-if __name__ == "__main__":
-        engine = create_engine('mysql+pymysql://root:@localhost:3306/bankdashboarddb', echo=True)
-        Session = sessionmaker(bind=engine)
-        my_session = Session()
-
-        user_id = input("user id:")
-        first_name = input("First Name:")
-        last_name = input("Last Name:")
-        email_name = input("E-mail:")
-        address = input("Address:")
-        phone_number = input("Phone Number:")
-        date_of_birth = input("Date of Birth:")
-        join_date = "2023-02-21"
-
-        new_user = UserRepository(user_id, first_name, last_name, email_name, address, phone_number, date_of_birth, join_date)
-        db.session.add(new_user)
-        db.session.commit()
-
-        return users.add(new_user)
