@@ -19,6 +19,7 @@ class User:
         self.__email_name = email_name
         self.__address = address
         self.__phone_number = phone_number
+        self.__date_of_birth = date_of_birth
         self.__join_date = join_date
 
     def __str__(self):

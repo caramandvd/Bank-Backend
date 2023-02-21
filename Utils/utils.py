@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine, text
 
 from Model.Domain.USER import User
-
 engine = create_engine('mysql+pymysql://root:@localhost:3306/bankdashboarddb', echo=True)
 
 
