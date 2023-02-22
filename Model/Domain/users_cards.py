@@ -10,31 +10,7 @@ class UsersCards(Base):
     cvv_hash = Column(String(256))
     expiration_date = Column(Date)
     def __repr__(self):
-        return f'{self.__user_id};{self.__card_number};{self.__pin_hash};{self.__cvv_hash};{self.__expiration_date}'
+        return f'{self.user_id};{self.card_number};{self.pin_hash};{self.cvv_hash};{self.expiration_date}'
 
     def __str__(self):
-        return f'{self.__user_id};{self.__card_number};{self.__pin_hash};{self.__cvv_hash};{self.__expiration_date}'
-
-    def get_card_number(self):
-        return self.__card_number
-
-    def set_card_number(self, cardnumber):
-        self.__card_number = cardnumber
-
-    def get_pin_hash(self):
-        return self.__pin_hash
-
-    def set_pin_hash(self, pinhash):
-        self.__pin_hash = pinhash
-
-    def get_cvv_hash(self):
-        return self.__cvv_hash
-
-    def set_cvv_hash(self, cvvhash):
-        self.__cvv_hash = cvvhash
-
-    def get_expiration_date(self):
-        return self.__expiration_date
-
-    def set_expiration_date(self, expdate):
-        self.__expiration_date = expdate
+        return f'{self.user_id};{self.card_number};{self.pin_hash};{self.cvv_hash};{self.expiration_date}'

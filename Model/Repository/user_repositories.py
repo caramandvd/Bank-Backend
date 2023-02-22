@@ -11,7 +11,6 @@ class UsersRepository:
         engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
         self.session = sessionmaker(engine)()
 
-
     def get_date_of_birth(self, user_id):
         centuries = {
             '1': 1900, '2': 1900, '3': 1800, '4': 1800, '5': 2000, '6': 2000}
