@@ -1,9 +1,14 @@
-class UserAccounts:
-    def __init__(self, user_id, account_number, currency, amount):
-        self.__user_id = user_id
-        self.__account_number = account_number
-        self.__currency = currency
-        self.__amount = amount
+from Utils.utils import Base
+from sqlalchemy import Column, String, Integer, Date, Float, ForeignKey
+
+
+class UserAccounts(Base):
+
+    __tablename__ = "usersaccounts"
+    user_id = Column(String(13), primary_key=True, foreign_key=ForeignKey('users.user_id', ondelete="CASCADE"))
+    account_number = Column(String(24), foreign_key=ForeignKey('users_accounts.account_number', ondelete="CASCADE"))
+    currency = Column(String(3), foreignkey=ForeignKey("currencies.currency", ondelete="CASCADE"))
+    amount = Column(Float(2))
 
     def __repr__(self):
         return f'{self.__user_id};{self.__account_number};{self.__currency};{self.__amount}'

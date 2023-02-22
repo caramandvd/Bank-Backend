@@ -1,10 +1,14 @@
-class Messages:
-    def __init__(self, id, user_id, message, date, state):
-        self.__id = id
-        self.__user_id = user_id
-        self.__message = message
-        self.__date = date
-        self.__state = state
+from Utils.utils import Base
+from sqlalchemy import Column, String, Integer, Date, Float, ForeignKey, Double, Boolean
+
+
+class Messages(Base):
+    __tablename__ = 'messages'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(String(13), primary_key=True, foreign_key=ForeignKey('users.user_id', ondelete="CASCADE"))
+    messages = Column(String)
+    date = Column(Date)
+    state = Column(Boolean)
 
     def __str__(self):
         return f'{self.__id};{self.__user_id};{self.__message};{self.__date};{self.__state}'

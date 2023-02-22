@@ -1,11 +1,14 @@
-class ExchangeRates:
-    def __init__(self, id, from_currency, to_currency, date_time, rate):
-        self.__id = id
-        self.__from_currency = from_currency
-        self.__to_currency = to_currency
-        self.__date_time = date_time
-        self.__rate = rate
+from Utils.utils import Base
+from sqlalchemy import Column, String, Integer, DateTime, Float, ForeignKey, Double
 
+
+class ExchangeRates(Base):
+    __tablename__ = "exchange_rates"
+    id = Column(Integer, primary_key=True)
+    from_currency = Column(String(3))
+    to_currency = Column(String(3))
+    date_time = Column(DateTime)
+    rate = Column(Float(2))
     def __repr__(self):
         return f'{self.__id};{self.__from_currency};{self.__to_currency};{self.__date_time};{self.__rate}'
 

@@ -1,14 +1,13 @@
-class UserCredentials:
-    def __init__(self, user_id, username, user_password_hash):
-        """
+from Utils.utils import Base
+from sqlalchemy import Column, String, Integer, DateTime, Float, ForeignKey
 
-        :param user_id: acelasi id folosit si in User class (CNP)
-        :param username: username, unique
-        :param user_password_hash:
-        """
-        self.__user_id = user_id
-        self.__username = username
-        self.__user_password_hash = user_password_hash
+
+class UsersCredentials(Base):
+    __tablename__ = "users_credentials"
+
+    user_id = Column(String(13), primary_key=True, foreign_key=ForeignKey("users.user_id", ondelete="CASCADE"))
+    username = Column(String(30), unique=True)
+    user_password_hash = Column(String(25))
 
     def __str__(self):
         return f'{self.__user_id};{self.__username};{self.__user_password_hash}'

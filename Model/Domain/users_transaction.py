@@ -1,11 +1,19 @@
-class UserTransactions:
-    def __init__(self, transaction_id, user_id, currency, amount, vendor, date_time):
-        self.__transaction_id = transaction_id
-        self.__user_id = user_id
-        self.__currency = currency
-        self.__amount = amount
-        self.__vendor = vendor
-        self.__date_time = date_time
+from xmlrpc.client import DateTime
+
+from Utils.utils import Base
+from sqlalchemy import Column, String, Integer, DateTime, Float, ForeignKey
+
+
+class UsersTransactions(Base):
+
+    __tablename__ = "users_transactions"
+
+    transaction_id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(String(13), foreign_key=ForeignKey("users.user_id", ondelete="CASCADE"))
+    currency = Column(String(3), foreign_key=ForeignKey("currencies.currency", ondelete="CASCADE"))
+    amount = Column(Float(2))
+    vendor = Column(String(100))
+    date_time = Column(DateTime)
 
     def __repr__(self):
         return f'{self.__transaction_id};{self.__user_id};{self.__currency};{self.__amount};{self.__vendor};' \

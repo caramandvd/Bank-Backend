@@ -1,11 +1,14 @@
-class AtmLocations:
-    def __init__(self, atm_id, address, lat, lng, number_atms):
-        self.__atm_id = atm_id
-        self.__address = address
-        self.__lat = lat
-        self.__lng = lng
-        self.__number_atms = number_atms
+from Utils.utils import Base
+from sqlalchemy import Column, String, Integer, Date, Float, ForeignKey, Double
 
+
+class AtmLocations(Base):
+    __tablename__ = "atm_locations"
+    atm_id = Column(String(9), primary_key=True)
+    address = Column(String(200))
+    lat = Column(String(9))
+    lng = Column(String(9))
+    number_atms = Column(Integer)
     def get_atm_id(self):
         return self.__atm_id
 
