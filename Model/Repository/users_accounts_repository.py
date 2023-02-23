@@ -36,5 +36,5 @@ class UsersAccountsRepository:
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersAccountsRepository()
-    repo.create('5030329082416', 'EURFASDFASDFASDFASDDAVDI', 'CAD', 56780)
+    repo.create('5030329082416', 'EURFASDFASDFASDFASDDAVDI', 'CAD', 0)
 
