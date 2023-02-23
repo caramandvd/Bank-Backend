@@ -1,7 +1,7 @@
-from sqlalchemy import create_engine, engine
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.currencies import Currencies
-from Utils.utils import Base
+from Utils.utils import Base, engine
 
 
 class CurrenciesRepository:
@@ -20,7 +20,6 @@ class CurrenciesRepository:
 
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
     Base.metadata.create_all(engine)
     repo = CurrenciesRepository()
     repo.create('DKK')
