@@ -1,5 +1,5 @@
 from Utils.utils import Base
-from sqlalchemy import Column, String, Integer, Date, Float, ForeignKey
+from sqlalchemy import Column, String, Date, ForeignKey
 
 
 class UsersCards(Base):
@@ -9,6 +9,7 @@ class UsersCards(Base):
     pin_hash = Column(String(256))
     cvv_hash = Column(String(256))
     expiration_date = Column(Date)
+
     def __repr__(self):
         return f'{self.user_id};{self.card_number};{self.pin_hash};{self.cvv_hash};{self.expiration_date}'
 
