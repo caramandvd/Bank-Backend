@@ -1,14 +1,11 @@
-from datetime import datetime, date
-
 from sqlalchemy import create_engine, engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.users_accounts import UsersAccounts
-from Utils.utils import Base
+from Utils.utils import engine
 
 
 class UsersAccountsRepository:
     def __init__(self):
-        engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
         self.session = sessionmaker(engine)()
 
     def create(self, user_id, account_number, currency, amount):
