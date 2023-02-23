@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.users_accounts import UsersAccounts
-from Utils.utils import engine
+from Utils.utils import engine, Base
 
 
 class UsersAccountsRepository:
@@ -16,7 +16,7 @@ class UsersAccountsRepository:
             currency=currency,
             amount=amount
         )
-        self.session.add(new_user_account)
+        self.session.filter(amount.value > 0).add(new_user_account)
         self.session.commit()
 
     def read(self, user_id):
@@ -30,4 +30,9 @@ class UsersAccountsRepository:
     def delete(self, user_id):
         self.session.query(UsersAccounts).filter_by(user_id=user_id).delete()
         self.session.commit()
+
+if __name__ == '__main__':
+    Base.metadata.create_all(engine)
+    repo = UsersAccountsRepository()
+    repo.create('5030329082416', 'EURFASDFASDFASDFASDDAVDI', 'CAD', 0)
 
