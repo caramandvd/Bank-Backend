@@ -59,3 +59,10 @@ class UsersRepository:
             return user.email_name
 
         return None
+
+
+if __name__ == '__main__':
+    engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
+    Base.metadata.create_all(engine)
+    repo = UsersRepository()
+    repo.create('5070404123456', 'Luca', 'Caraman', 'luca@mail.com', 'Camera lui', '0712341234')
