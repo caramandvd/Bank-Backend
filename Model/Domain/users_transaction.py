@@ -1,7 +1,5 @@
-from xmlrpc.client import DateTime
-
 from Utils.utils import Base
-from sqlalchemy import Column, String, Integer, DateTime, Float, ForeignKey, Date
+from sqlalchemy import Column, String, Integer, Float, ForeignKey, Date
 
 
 class UsersTransactions(Base):
