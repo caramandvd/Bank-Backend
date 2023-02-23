@@ -1,5 +1,5 @@
 from Utils.utils import Base
-from sqlalchemy import Column, String, Integer, Date, Float, ForeignKey, Double
+from sqlalchemy import Column, String, Integer
 
 
 class AtmLocations(Base):
@@ -8,4 +8,7 @@ class AtmLocations(Base):
     address = Column(String(200))
     lat = Column(String(9))
     lng = Column(String(9))
-    number_atms = Column(Integer)
+    number_atms = Column(Integer, auto_increment=True)
+
+    def __repr__(self):
+        return f'{self.atm_id}; {self.address}; {self.lat}; {self.lng}; {self.number_atms}'
