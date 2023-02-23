@@ -1,5 +1,5 @@
 from Utils.utils import Base
-from sqlalchemy import Column, String, Integer, DateTime, Float, ForeignKey
+from sqlalchemy import Column, String, ForeignKey
 
 
 class UsersCredentials(Base):
