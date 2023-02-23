@@ -7,8 +7,7 @@ from Model.Domain.users_transaction import UsersTransactions
 
 class UsersTransactionsRepository:
     def __init__(self):
-        engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
-        self.session = sessionmaker(engine)()
+        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
 
     def create(self, user_id, currency, amount, vendor):
         new_user_transaction = UsersTransactions(

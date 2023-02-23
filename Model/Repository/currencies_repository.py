@@ -6,8 +6,7 @@ from Utils.utils import Base
 
 class CurrenciesRepository:
     def __init__(self):
-        engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
-        self.session = sessionmaker(engine)()
+        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
 
     def read(self):
         return self.session.query(Currencies).all()

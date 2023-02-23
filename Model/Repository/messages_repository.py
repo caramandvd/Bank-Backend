@@ -17,7 +17,7 @@ class MessagesRepository:
         self.session.commit()
 
     def create(self, user_id, message, state):
-        new_message= Messages(
+        new_message = Messages(
             user_id=user_id,
             message=message,
             date=datetime.now(),

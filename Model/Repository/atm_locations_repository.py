@@ -7,8 +7,7 @@ from Utils.utils import Base
 class AtmLocationsRepository:
 
     def __init__(self):
-        engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
-        self.session = sessionmaker(engine)()
+        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
 
     def read(self, atm_id):
         return self.session.query(AtmLocations).filter_by(atm_id=atm_id).first()
