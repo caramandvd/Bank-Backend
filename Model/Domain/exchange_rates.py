@@ -1,12 +1,20 @@
 from Utils.utils import Base
-from sqlalchemy import Column, String, Integer, DateTime, Float
+from sqlalchemy import Column, String, Integer, DateTime, Float, ForeignKey
+from sqlalchemy.orm import relationship
+
+
+class Currencies(Base):
+    __tablename__ = "currencies"
+    currency = Column(String(3), primary_key=True)
+    from_currency = relationship("ExchangeRates", backref="currencies")
+    to_currency = relationship("ExchangeRates", backref="currencies")
 
 
 class ExchangeRates(Base):
     __tablename__ = "exchange_rates"
     id = Column(Integer, primary_key=True)
-    from_currency = Column(String(3))
-    to_currency = Column(String(3))
+    from_currency = Column(String(3), ForeignKey('currencies.id'))
+    to_currency = Column(String(3), ForeignKey('currencies.id'))
     date_time = Column(DateTime)
     rate = Column(Float(2))
 
