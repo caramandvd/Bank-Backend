@@ -10,7 +10,7 @@ class UsersCredentials(Base):
     user_password_hash = Column(String(25))
 
     def __str__(self):
-        return f'{self.user_id};{self.username};{self.user_password_hash}'
+        return f'{self.user_id}; {self.username}; {self.user_password_hash}'
 
     def __repr__(self):
-        return f'{self.user_id};{self.username};{self.user_password_hash}'
+        return f'{self.user_id}; {self.username}; {self.user_password_hash}'
