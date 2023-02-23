@@ -9,15 +9,17 @@ class UsersAccountsRepository:
         self.session = sessionmaker(engine)()
 
     def create(self, user_id, account_number, currency, amount):
-
-        new_user_account = UsersAccounts(
-            user_id=user_id,
-            account_number=account_number,
-            currency=currency,
-            amount=amount
-        )
-        self.session.filter(amount.value > 0).add(new_user_account)
-        self.session.commit()
+        if amount > 0:
+            new_user_account = UsersAccounts(
+                user_id=user_id,
+                account_number=account_number,
+                currency=currency,
+                amount=amount
+            )
+            self.session.add(new_user_account)
+            self.session.commit()
+        else:
+            print("Error: Amount must be greater than 0.")
 
     def read(self, user_id):
         return self.session.query(UsersAccounts).filter_by(user_id=user_id).first()
@@ -34,5 +36,5 @@ class UsersAccountsRepository:
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersAccountsRepository()
-    repo.create('5030329082416', 'EURFASDFASDFASDFASDDAVDI', 'CAD', 0)
+    repo.create('5030329082416', 'EURFASDFASDFASDFASDDAVDI', 'CAD', 56780)
 
