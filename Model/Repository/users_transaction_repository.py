@@ -1,10 +1,9 @@
 from datetime import datetime
-from sqlalchemy import create_engine, String
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.testing.schema import Column
 
 from Model.Domain.users_transaction import UsersTransactions
-from Utils.utils import Base
+
 
 class UsersTransactionsRepository:
     def __init__(self):
@@ -32,5 +31,3 @@ class UsersTransactionsRepository:
     def delete(self, transaction_id):
         self.session.query(UsersTransactions).filter_by(transaction_id=transaction_id).delete()
         self.session.commit()
-
-

@@ -12,3 +12,4 @@ class AtmLocations(Base):
 
     def __repr__(self):
         return f'{self.atm_id}; {self.address}; {self.lat}; {self.lng}; {self.number_atms}'
+    
