@@ -1,5 +1,5 @@
 from Utils.utils import Base
-from sqlalchemy import Column, String, Integer, Date, Float, ForeignKey, Double
+from sqlalchemy import Column, String, Float, ForeignKey
 
 
 class UsersDeposits(Base):
@@ -11,7 +11,7 @@ class UsersDeposits(Base):
     description = Column(String)
 
     def __str__(self):
-        return f'{self.user_id};{self.currency};{self.name};{self.amount};{self.description}'
+        return f'{self.user_id}; {self.currency}; {self.name}; {self.amount}; {self.description}'
 
     def __repr__(self):
-        return f'{self.user_id};{self.currency};{self.name};{self.amount};{self.description}'
+        return f'{self.user_id}; {self.currency}; {self.name}; {self.amount}; {self.description}'
