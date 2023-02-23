@@ -11,18 +11,6 @@ class UsersRepository:
         engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
         self.session = sessionmaker(engine)()
 
-    def get_date_of_birth(self, user_id):
-        centuries = {
-            '1': 1900, '2': 1900, '3': 1800, '4': 1800, '5': 2000, '6': 2000}
-        year = int(user_id[1:3]) + centuries.get(user_id[0], 1900)
-        month = int(user_id[3:5])
-        day = int(user_id[5:7])
-        try:
-            return datetime.date(year, month, day)
-        except ValueError:
-            from stdnum.exceptions import InvalidComponent
-            raise InvalidComponent()
-
     def create(self, user_id, first_name, last_name, email_name, address, phone_number):
 
         def get_date_of_birth(user_id):
