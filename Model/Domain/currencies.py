@@ -1,5 +1,5 @@
 from Utils.utils import Base
-from sqlalchemy import Column, String, Integer, Date, Float, ForeignKey, Double
+from sqlalchemy import Column, String
 
 
 class Currencies(Base):
