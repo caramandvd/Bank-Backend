@@ -17,9 +17,17 @@ class UsersAccountsRepository:
                 amount=amount
             )
             self.session.add(new_user_account)
-            self.session.commit()
+
+            if self.session.query(UsersAccounts).filter_by(user_id=user_id, account_number=account_number).first():
+                print("Successfully inserted new user account into the database.")
+                return True
+            else:
+                print("Error: Failed to insert new user account into the database.")
+                return False
         else:
             print("Error: Amount must be greater than 0.")
+            return False
+
 
     def read(self, user_id):
         return self.session.query(UsersAccounts).filter_by(user_id=user_id).first()
@@ -36,5 +44,5 @@ class UsersAccountsRepository:
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersAccountsRepository()
-    repo.create('5030329082416', 'EURFASDFASDFASDFASDDAVDI', 'CAD', 0)
+    repo.create('6020528123456', 'EURFASDFASDFASDFASDPAVMM', 'CZK', 1234)
 
