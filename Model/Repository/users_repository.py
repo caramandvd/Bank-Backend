@@ -37,6 +37,13 @@ class UsersRepository:
         self.session.add(new_user)
         self.session.commit()
 
+        if self.session.query(UsersRepository).filter_by(user_id=user_id, first_name=first_name, last_name=last_name, email_name=email_name, address=address, phone_number=phone_number).first():
+            print("Successfully inserted new user into the database.")
+            return True
+        else:
+            print("Error: Failed to insert new user into the database.")
+            return False
+
     def read(self, user_id):
         return self.session.query(Users).filter_by(user_id=user_id).first()
 
