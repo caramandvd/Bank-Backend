@@ -11,7 +11,7 @@ class UsersCards(Base):
     expiration_date = Column(Date)
 
     def __repr__(self):
-        return f'{self.user_id};{self.card_number};{self.pin_hash};{self.cvv_hash};{self.expiration_date}'
+        return f'{self.user_id}; {self.card_number}; {self.pin_hash}; {self.cvv_hash}; {self.expiration_date}'
 
     def __str__(self):
-        return f'{self.user_id};{self.card_number};{self.pin_hash};{self.cvv_hash};{self.expiration_date}'
+        return f'{self.user_id}; {self.card_number}; {self.pin_hash}; {self.cvv_hash}; {self.expiration_date}'

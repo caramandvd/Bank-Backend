@@ -2,12 +2,12 @@ from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.exchange_rates import ExchangeRates
-from Utils.utils import Base
+from Utils.utils import Base, engine
 
 
 class ExchangeRatesRepository:
     def __init__(self):
-        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
+        self.session = sessionmaker(engine)()
 
     def read(self, exchange_id):
         return self.session.query(ExchangeRates).filter_by(exchange_id=exchange_id).first()
