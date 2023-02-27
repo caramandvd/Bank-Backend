@@ -1,6 +1,5 @@
 from datetime import datetime, date
-
-from sqlalchemy import create_engine, engine
+from sqlalchemy import engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.users import Users
 from Utils.utils import Base, engine
@@ -68,7 +67,6 @@ class UsersRepository:
 
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
     Base.metadata.create_all(engine)
     repo = UsersRepository()
     repo.create('5070404123456', 'Luca', 'Caraman', 'luca@mail.com', 'Camera lui', '0712341234')
