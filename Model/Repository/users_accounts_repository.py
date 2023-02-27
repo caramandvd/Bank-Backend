@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, engine
+from sqlalchemy import engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.users_accounts import UsersAccounts
 from Utils.utils import engine, Base
