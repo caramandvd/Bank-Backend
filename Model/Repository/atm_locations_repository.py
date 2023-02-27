@@ -1,4 +1,3 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.atm_locations import AtmLocations
 from Utils.utils import Base, engine
