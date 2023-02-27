@@ -1,13 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.atm_locations import AtmLocations
-from Utils.utils import Base
+from Utils.utils import Base, engine
 
 
 class AtmLocationsRepository:
 
     def __init__(self):
-        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
+        self.session = sessionmaker(engine)()
 
     def read(self, atm_id):
         return self.session.query(AtmLocations).filter_by(atm_id=atm_id).first()

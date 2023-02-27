@@ -1,13 +1,13 @@
 from datetime import datetime
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from Model.Domain.users_transaction import UsersTransactions
+from Utils.utils import engine
 
 
 class UsersTransactionsRepository:
     def __init__(self):
-        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
+        self.session = sessionmaker(engine)()
 
     def create(self, user_id, currency, amount, vendor):
         new_user_transaction = UsersTransactions(

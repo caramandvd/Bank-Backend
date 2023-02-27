@@ -1,18 +1,17 @@
 from datetime import datetime
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.messages import Messages
-from Utils.utils import Base
+from Utils.utils import Base, engine
 
 
 class MessagesRepository:
     def __init__(self):
-        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
+        self.session = sessionmaker(engine)()
 
     def read(self, id):
         return self.session.query(Messages).filter_by(id=id).first()
 
-    def update(self, id, user_id, **kwargs):
+    def update(self, id, **kwargs):
         self.session.query(Messages).filter_by(id=id).update(kwargs)
         self.session.commit()
 
@@ -27,7 +26,7 @@ class MessagesRepository:
 
 
 if __name__ == '__main__':
-    Base.metadata.create_all(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))
+    Base.metadata.create_all(engine)
     repo = MessagesRepository()
     repo.create('5030329082416', 'This is the first sent message', True)
     print(repo.read(1))
