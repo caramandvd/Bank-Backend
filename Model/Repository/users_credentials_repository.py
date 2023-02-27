@@ -1,12 +1,11 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.users_credentials import UsersCredentials
-from Utils.utils import Base
+from Utils.utils import Base, engine
 
 
 class UsersCredentialsRepository:
     def __init__(self):
-        self.session = sessionmaker(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))()
+        self.session = sessionmaker(engine)()
 
     def create(self, user_id, username, user_password):
 
@@ -35,7 +34,7 @@ class UsersCredentialsRepository:
 
 
 if __name__ == '__main__':
-    Base.metadata.create_all(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))
+    Base.metadata.create_all(engine)
     repo = UsersCredentialsRepository()
     repo.create('5030329082416', 'caramandvd', 'password')
     
