@@ -1,5 +1,4 @@
 from datetime import datetime
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Model.Domain.exchange_rates import ExchangeRates
 from Utils.utils import Base, engine
