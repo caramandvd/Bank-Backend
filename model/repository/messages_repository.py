@@ -1,7 +1,9 @@
 from datetime import datetime
+
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.messages import Messages
-from Utils.utils import Base
+
+from model.domain.messages import Messages
+from utils.db import Base, engine
 
 
 class MessagesRepository:

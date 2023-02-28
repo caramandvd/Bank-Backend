@@ -1,6 +1,7 @@
-from sqlalchemy.orm import relationship
-from Utils.utils import Base
 from sqlalchemy import Column, String
+from sqlalchemy.orm import relationship
+
+from utils.db import Base
 
 
 class Currencies(Base):

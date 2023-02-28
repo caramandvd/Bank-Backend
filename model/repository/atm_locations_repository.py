@@ -1,6 +1,7 @@
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.atm_locations import AtmLocations
-from Utils.utils import Base, engine
+
+from model.domain.atm_locations import AtmLocations
+from utils.db import Base, engine
 
 
 class AtmLocationsRepository:

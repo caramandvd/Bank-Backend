@@ -1,6 +1,7 @@
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.currencies import Currencies
-from Utils.utils import Base, engine
+
+from model.domain.currencies import Currencies
+from utils.db import Base, engine
 
 
 class CurrenciesRepository:

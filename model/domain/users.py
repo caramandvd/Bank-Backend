@@ -1,11 +1,9 @@
-import datetime
+from sqlalchemy import Column, String, Date
 
-from sqlalchemy import Column, Integer, String, Date
+from utils.db import Base
 
-from Utils.utils import Base
 
 class Users(Base):
-
     __tablename__ = 'users'
 
     user_id = Column(String(13), primary_key=True)

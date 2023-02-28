@@ -1,8 +1,11 @@
 from datetime import datetime, date
+
 from sqlalchemy import engine
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.users import Users
-from Utils.utils import Base, engine
+
+from model.domain.users import Users
+from utils.db import Base, engine
+from utils.exc import InvalidUserID
 
 
 class UsersRepository:
@@ -20,8 +23,7 @@ class UsersRepository:
             try:
                 return date(year, month, day)
             except ValueError:
-                from stdnum.exceptions import InvalidComponent
-                raise InvalidComponent()
+                raise InvalidUserID()
 
         new_user = Users(
             user_id=user_id,
@@ -36,7 +38,14 @@ class UsersRepository:
         self.session.add(new_user)
         self.session.commit()
 
-        if self.session.query(UsersRepository).filter_by(user_id=user_id, first_name=first_name, last_name=last_name, email_name=email_name, address=address, phone_number=phone_number).first():
+        if self.session.query(UsersRepository).filter_by(
+                user_id=user_id,
+                first_name=first_name,
+                last_name=last_name,
+                email_name=email_name,
+                address=address,
+                phone_number=phone_number
+        ).first():
             print("Successfully inserted new user into the database.")
             return True
         else:
@@ -49,7 +58,7 @@ class UsersRepository:
     def update(self, user_id, **kwargs):
         print(kwargs)
         self.session.query(Users).filter_by(user_id=user_id).update(kwargs)
-        self.session.commit( )
+        self.session.commit()
 
     def delete(self, user_id):
         self.session.query(Users).filter_by(user_id=user_id).delete()

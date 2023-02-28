@@ -1,9 +1,11 @@
-from datetime import datetime, timedelta
 import hashlib
+from datetime import datetime, timedelta
+
 from sqlalchemy import engine
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.users_cards import UsersCards
-from Utils.utils import Base, engine
+
+from model.domain.users_cards import UsersCards
+from utils.db import Base, engine
 
 
 def hash_pin(unhased_pin):
@@ -44,7 +46,9 @@ class UsersCardsRepository:
         return self.session.query(UsersCards).filter_by(user_id=user_id).first()
 
     def update(self, user_id, card_number, new_unhashed_pin):
-        self.session.query(UsersCards).filter_by(user_id=user_id, card_number=card_number).update({'pin_hash': hash_pin(new_unhashed_pin)})
+        self.session.query(UsersCards).filter_by(user_id=user_id, card_number=card_number).update({
+            'pin_hash': hash_pin(new_unhashed_pin)
+        })
         self.session.commit()
 
     def delete(self, card_number):

@@ -1,7 +1,8 @@
 from sqlalchemy import engine
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.users_deposits import UsersDeposits
-from Utils.utils import Base, engine
+
+from model.domain.users_deposits import UsersDeposits
+from utils.db import Base, engine
 
 
 class UsersDepositsRepository:
@@ -23,7 +24,9 @@ class UsersDepositsRepository:
         return self.session.query(UsersDeposits).filter_by(user_id=user_id).first()
 
     def update(self, user_id, description):
-        self.session.query(UsersDeposits).filter_by(user_id=user_id, description=description).update({'description': description})
+        self.session.query(UsersDeposits).filter_by(user_id=user_id, description=description).update({
+            'description': description
+        })
         self.session.commit()
 
     def delete(self, user_id, name, amount):

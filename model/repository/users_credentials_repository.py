@@ -1,6 +1,7 @@
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.users_credentials import UsersCredentials
-from Utils.utils import Base, engine
+
+from model.domain.users_credentials import UsersCredentials
+from utils.db import Base, engine
 
 
 class UsersCredentialsRepository:
@@ -37,4 +38,3 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersCredentialsRepository()
     repo.create('5030329082416', 'caramandvd', 'password')
-    

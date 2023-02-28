@@ -1,5 +1,6 @@
-from Utils.utils import Base
 from sqlalchemy import Column, String, Integer, DateTime, Float, ForeignKey
+
+from utils.db import Base
 
 
 class ExchangeRates(Base):
