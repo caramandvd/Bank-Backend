@@ -1,9 +1,9 @@
-from Utils.utils import Base
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Date
+
+from utils.db import Base
 
 
 class UsersTransactions(Base):
-
     __tablename__ = "users_transactions"
 
     transaction_id = Column(Integer, primary_key=True, autoincrement=True)

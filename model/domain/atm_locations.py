@@ -1,5 +1,6 @@
-from Utils.utils import Base
 from sqlalchemy import Column, String, Integer
+
+from utils.db import Base
 
 
 class AtmLocations(Base):
@@ -12,4 +13,3 @@ class AtmLocations(Base):
 
     def __repr__(self):
         return f'{self.atm_id}; {self.address}; {self.lat}; {self.lng}; {self.number_atms}'
-    

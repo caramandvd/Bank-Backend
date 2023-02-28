@@ -1,5 +1,6 @@
-from Utils.utils import Base
 from sqlalchemy import Column, String, Integer, ForeignKey, Boolean, DateTime
+
+from utils.db import Base
 
 
 class Messages(Base):

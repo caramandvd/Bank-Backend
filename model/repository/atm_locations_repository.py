@@ -1,7 +1,7 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.atm_locations import AtmLocations
-from Utils.utils import Base, engine
+
+from model.domain.atm_locations import AtmLocations
+from utils.db import Base, engine
 
 
 class AtmLocationsRepository:
@@ -24,7 +24,6 @@ class AtmLocationsRepository:
 
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb')
     Base.metadata.create_all(engine)
     repo = AtmLocationsRepository()
     repo.create('000000001', 'Sigma, Zorilor', '46 45 24.1N', '23 35 40.9E')

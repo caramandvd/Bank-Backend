@@ -1,7 +1,9 @@
 from datetime import datetime
+
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.messages import Messages
-from Utils.utils import Base, engine
+
+from model.domain.messages import Messages
+from utils.db import Base, engine
 
 
 class MessagesRepository:
@@ -11,7 +13,7 @@ class MessagesRepository:
     def read(self, id):
         return self.session.query(Messages).filter_by(id=id).first()
 
-    def update(self, id, **kwargs):
+    def update(self, id, user_id, **kwargs):
         self.session.query(Messages).filter_by(id=id).update(kwargs)
         self.session.commit()
 

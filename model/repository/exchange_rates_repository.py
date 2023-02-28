@@ -1,8 +1,9 @@
 from datetime import datetime
-from sqlalchemy import create_engine
+
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.exchange_rates import ExchangeRates
-from Utils.utils import Base, engine
+
+from model.domain.exchange_rates import ExchangeRates
+from utils.db import Base, engine
 
 
 class ExchangeRatesRepository:
@@ -24,7 +25,7 @@ class ExchangeRatesRepository:
 
 
 if __name__ == '__main__':
-    Base.metadata.create_all(create_engine('mysql+pymysql://root@localhost:3306/bankdashboarddb'))
+    Base.metadata.create_all(engine)
     repo = ExchangeRatesRepository()
     repo.create('RON', 'EUR', 0.201)
     print(repo.read(3))

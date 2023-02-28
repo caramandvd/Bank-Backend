@@ -1,8 +1,9 @@
 from datetime import datetime
+
 from sqlalchemy.orm import sessionmaker
 
-from Model.Domain.users_transaction import UsersTransactions
-from Utils.utils import engine
+from model.domain.users_transaction import UsersTransactions
+from utils.db import engine
 
 
 class UsersTransactionsRepository:

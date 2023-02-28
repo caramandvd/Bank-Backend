@@ -1,7 +1,8 @@
-from sqlalchemy import create_engine, engine
+from sqlalchemy import engine
 from sqlalchemy.orm import sessionmaker
-from Model.Domain.users_accounts import UsersAccounts
-from Utils.utils import engine, Base
+
+from model.domain.users_accounts import UsersAccounts
+from utils.db import engine, Base
 
 
 class UsersAccountsRepository:
@@ -28,7 +29,6 @@ class UsersAccountsRepository:
             print("Error: Amount must be greater than 0.")
             return False
 
-
     def read(self, user_id):
         return self.session.query(UsersAccounts).filter_by(user_id=user_id).first()
 
@@ -41,8 +41,8 @@ class UsersAccountsRepository:
         self.session.query(UsersAccounts).filter_by(user_id=user_id).delete()
         self.session.commit()
 
+
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersAccountsRepository()
     repo.create('6020528123456', 'EURFASDFASDFASDFASDPAVMM', 'CZK', 1234)
-
