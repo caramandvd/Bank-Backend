@@ -52,8 +52,23 @@ class UsersRepository:
             print("Error: Failed to insert new user into the database.")
             return False
 
-    def read(self, user_id):
-        return self.session.query(Users).filter_by(user_id=user_id).first()
+    def read_user_by_user_id(self, user_id):
+        user = self.session.query(Users).filter_by(user_id=user_id).first()
+        if user:
+            return user
+        return None
+
+    def read_user_by_phone_number(self, phone_number):
+        user = self.session.query(Users).filter_by(phone_number=phone_number).first()
+        if user:
+            return user
+        return None
+
+    def read_user_by_email(self, email):
+        user = self.session.query(Users).filter_by(email_name=email).first()
+        if user:
+            return user
+        return None
 
     def update(self, user_id, **kwargs):
         print(kwargs)
@@ -78,4 +93,5 @@ class UsersRepository:
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersRepository()
-    repo.create('5070404123456', 'Luca', 'Caraman', 'luca@mail.com', 'Camera lui', '0712341234')
+    # repo.create('5070404123456', 'Luca', 'Caraman', 'luca@mail.com', 'Camera lui', '0712341234')
+    print(repo.read_user_by_phone_number('0755925361'))
