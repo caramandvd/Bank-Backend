@@ -9,7 +9,6 @@ class UsersCredentialsRepository:
         self.session = sessionmaker(engine)()
 
     def create(self, user_id, username, user_password):
-
         def hash_password(password):
             import hashlib
             return hashlib.sha256(password.encode('UTF-8')).hexdigest()

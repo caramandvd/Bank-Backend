@@ -1,4 +1,10 @@
-config/dev.cfg
-
+# folders
 venv
 .idea
+
+# specific files
+config/dev.cfg
+
+
+# file types
+*.pyc
