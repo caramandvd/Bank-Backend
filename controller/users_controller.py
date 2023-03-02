@@ -6,8 +6,8 @@ class UsersController:
     def __init__(self, users_repository):
         self.users_repository = users_repository
 
-    def create_user(self, user_id, first_name, last_name, email_name, address, phone_number):
-        self.users_repository.create(user_id=user_id, first_name=first_name, last_name=last_name, email_name=email_name,
+    def create_user(self, user_id, first_name, last_name, email, address, phone_number):
+        self.users_repository.create(user_id=user_id, first_name=first_name, last_name=last_name, email=email,
                                      address=address, phone_number=phone_number)
 
     def get_user_by_id(self, user_id):
