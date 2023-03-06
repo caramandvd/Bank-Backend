@@ -12,7 +12,7 @@ class UsersRepository:
     def __init__(self):
         self.session = sessionmaker(engine)()
 
-    def create(self, user_id, first_name, last_name, email_name, address, phone_number):
+    def create(self, user_id, first_name, last_name, email, address, phone_number):
 
         def get_date_of_birth(user_id):
             centuries = {
@@ -29,7 +29,7 @@ class UsersRepository:
             user_id=user_id,
             first_name=first_name,
             last_name=last_name,
-            email_name=email_name,
+            email=email,
             address=address,
             phone_number=phone_number,
             date_of_birth=get_date_of_birth(user_id=user_id),
@@ -37,20 +37,6 @@ class UsersRepository:
         )
         self.session.add(new_user)
         self.session.commit()
-
-        if self.session.query(UsersRepository).filter_by(
-                user_id=user_id,
-                first_name=first_name,
-                last_name=last_name,
-                email_name=email_name,
-                address=address,
-                phone_number=phone_number
-        ).first():
-            print("Successfully inserted new user into the database.")
-            return True
-        else:
-            print("Error: Failed to insert new user into the database.")
-            return False
 
     def read_user_by_user_id(self, user_id):
         user = self.session.query(Users).filter_by(user_id=user_id).first()
@@ -65,13 +51,13 @@ class UsersRepository:
         return None
 
     def read_user_by_email(self, email):
-        user = self.session.query(Users).filter_by(email_name=email).first()
+        user = self.session.query(Users).filter_by(email=email).first()
         if user:
             return user
         return None
 
     def update(self, user_id, **kwargs):
-        print(kwargs)
+        # print(kwargs)
         self.session.query(Users).filter_by(user_id=user_id).update(kwargs)
         self.session.commit()
 
@@ -85,7 +71,7 @@ class UsersRepository:
     def get_email_by_user_id(self, user_id):
         user = self.session.query(Users).filter_by(user_id=user_id).first()
         if user:
-            return user.email_name
+            return user.email
 
         return None
 
@@ -94,3 +80,4 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersRepository()
     print(repo.read_user_by_phone_number('0755925361'))
+    print(repo.read_user_by_user_id('5030329082416'))

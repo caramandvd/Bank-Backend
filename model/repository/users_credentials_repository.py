@@ -2,6 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from model.domain.users_credentials import UsersCredentials
 from utils.db import Base, engine
 
+
 def hash_password(password):
     import hashlib
     return hashlib.sha256(password.encode('UTF-8')).hexdigest()
@@ -35,6 +36,7 @@ class UsersCredentialsRepository:
     def delete(self, user_id):
         self.session.query(UsersCredentials).filter_by(user_id=user_id).delete()
         self.session.commit()
+
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
