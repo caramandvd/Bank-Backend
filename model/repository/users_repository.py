@@ -57,7 +57,6 @@ class UsersRepository:
         return None
 
     def update(self, user_id, **kwargs):
-        # print(kwargs)
         self.session.query(Users).filter_by(user_id=user_id).update(kwargs)
         self.session.commit()
 

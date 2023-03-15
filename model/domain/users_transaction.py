@@ -10,7 +10,7 @@ class UsersTransactions(Base):
     user_id = Column(String(13), foreign_key=ForeignKey("users.user_id", ondelete="CASCADE"), autoincrement=True)
     currency = Column(String(3), foreign_key=ForeignKey("currencies.currency", ondelete="CASCADE"))
     amount = Column(Float(2))
-    vendor = Column(String(100))
+    reciever_id = Column(String(100))
     date_time = Column(Date)
 
     def __repr__(self):
