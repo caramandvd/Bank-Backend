@@ -10,13 +10,14 @@ class VendorsRepository:
     def __init__(self):
         self.session = sessionmaker(engine)()
 
-    def create(self, vendor_name, email, address, phone_number):
+    def create(self, vendor_name, email, address, phone_number, account):
         new_vendor = Vendors(
             vendor_name=vendor_name,
             email=email,
             address=address,
             phone_number=phone_number,
-            join_date=datetime.now()
+            join_date=datetime.now(),
+            account=account
         )
         self.session.add(new_vendor)
         self.session.commit()
@@ -35,11 +36,13 @@ class VendorsRepository:
         self.session.query(Vendors).filter_by(vendor_id=vendor_id).delete()
         self.session.commit()
 
+    def return_vendor_name_by_id(self, vendor_id):
+        vendor = self.session.query(Vendors).filter_by(vendor_id=vendor_id).first()
+        if vendor:
+            return vendor.vendor_name
+        return None
 
 if __name__ == "__main__":
     Base.metadata.create_all(engine)
     repo = VendorsRepository()
-    repo.create('Alianz', 'alianz@mail.com', 'Swiss', '0755512314')
-    # repo.update('1000000000003', address='FattyLand')
-    # print(repo.read_vendor_by_id('1000000000003'))
-    # repo.delete('1000000000003')
+    print(repo.return_vendor_name_by_id('1000000000000'))

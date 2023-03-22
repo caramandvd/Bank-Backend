@@ -11,6 +11,7 @@ class Vendors(Base):
     email = Column(String(50), nullable=False)
     address = Column(String(40), nullable=False)
     phone_number = Column(String(10), nullable=False)
+    account = Column(String(24), nullable=False)
     join_date = Column(Date, nullable=True)
 
     def __str__(self):

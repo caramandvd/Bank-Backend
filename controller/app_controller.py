@@ -1,5 +1,9 @@
+from pprint import pprint
+
 from model.repository.users_credentials_repository import UsersCredentialsRepository
 from model.repository.users_repository import UsersRepository
+from model.repository.users_transaction_repository import UsersTransactionsRepository
+from model.repository.vendors_repository import VendorsRepository
 from utils.db import Base, engine
 
 
@@ -37,8 +41,29 @@ class AppController:
         )
         self.add_username_password(user_id=user_id, username=username, user_password_hash=user_password_hash)
 
+    def get_last_transactions_by_user_id(self, user_id):
+        repo = UsersTransactionsRepository()
+        transactions = repo.read(user_id)
+        result = {}
+        for transaction in transactions:
+            if transaction.receiver_id[:3] != "100":
+                result[transaction.receiver_id] = {
+                    "receiver_username": UsersCredentialsRepository().get_username_by_user_id(transaction.receiver_id),
+                    "currency": transaction.currency,
+                    "amount": transaction.amount,
+                    "date_time": transaction.date_time.isoformat()
+                }
+            else:
+                result[transaction.receiver_id] = {
+                    "receiver_username": VendorsRepository().return_vendor_name_by_id(transaction.receiver_id),
+                    "currency": transaction.currency,
+                    "amount": transaction.amount,
+                    "date_time": transaction.date_time.isoformat()
+                }
+        return result
+
 
 if __name__ == "__main__":
     Base.metadata.create_all(engine)
     repo = AppController(UsersRepository())
-    repo.add_user('4080808121216', 'Ghi', 'Aur', 'ghi@mail.com', 'CJ', '0799911122', 'ghgh', 'nam')
+    pprint(repo.get_last_transactions_by_user_id('5030329082416'))

@@ -37,8 +37,15 @@ class UsersCredentialsRepository:
         self.session.query(UsersCredentials).filter_by(user_id=user_id).delete()
         self.session.commit()
 
+    def get_username_by_user_id(self, user_id):
+        user = self.session.query(UsersCredentials).filter_by(user_id=user_id).first()
+        if user:
+            return user.username
+
+        return None
+
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     repo = UsersCredentialsRepository()
-    repo.create('5030329082416', 'caramandvd', 'password')
+    print(repo.get_username_by_user_id("5030329082416"))
